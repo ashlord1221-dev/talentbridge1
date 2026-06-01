@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TalentBridge — Deploy Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d14;color:#e5e7eb;min-height:100vh;}
+.header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);padding:40px 32px;text-align:center;}
+.header h1{font-size:32px;font-weight:800;color:#fff;margin-bottom:8px;}
+.header h1 span{color:#60a5fa;}
+.header p{color:#93c5fd;font-size:15px;}
+.container{max-width:900px;margin:0 auto;padding:40px 24px;}
+.step{background:#161622;border:1.5px solid #2a2a3a;border-radius:14px;padding:28px;margin-bottom:20px;position:relative;}
+.step-num{position:absolute;top:-16px;left:24px;background:#2563EB;color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:.5px;}
+.step h2{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;margin-top:4px;}
+.step p{font-size:14px;color:#9ca3af;line-height:1.7;margin-bottom:12px;}
+.step-actions{display:flex;flex-direction:column;gap:10px;}
+.action-row{display:flex;align-items:flex-start;gap:12px;background:#0d0d14;border-radius:9px;padding:14px;}
+.action-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.action-text{flex:1;}
+.action-text strong{display:block;font-size:13px;color:#fff;margin-bottom:3px;}
+.action-text span{font-size:12px;color:#6b7280;}
+.code{background:#0a0a12;border:1px solid #2a2a3a;border-radius:8px;padding:12px 16px;font-family:'Courier New',monospace;font-size:13px;color:#86efac;margin:10px 0;overflow-x:auto;white-space:pre;}
+.highlight{background:#1e3a8a;border-color:#3b82f6;}
+.highlight .action-text strong{color:#93c5fd;}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;margin-left:6px;}
+.badge-free{background:#14532d;color:#86efac;}
+.badge-auto{background:#1e3a8a;color:#93c5fd;}
+.link-btn{display:inline-flex;align-items:center;gap:6px;background:#2563EB;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;margin-top:8px;}
+.link-btn.green{background:#16a34a;}
+.link-btn.dark{background:#374151;}
+.divider{height:1px;background:#2a2a3a;margin:8px 0;}
+.tip{background:#1c2a1c;border:1px solid #166534;border-radius:8px;padding:12px 14px;font-size:13px;color:#86efac;margin-top:10px;}
+.warning{background:#2a1c1c;border:1px solid #991b1b;border-radius:8px;padding:12px 14px;font-size:13px;color:#fca5a5;margin-top:10px;}
+.info{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 14px;font-size:13px;color:#93c5fd;margin-top:10px;}
+.demo-table{width:100%;border-collapse:collapse;margin-top:10px;}
+.demo-table th{background:#1e293b;color:#9ca3af;font-size:11px;padding:8px 12px;text-align:left;letter-spacing:.5px;}
+.demo-table td{padding:10px 12px;border-top:1px solid #2a2a3a;font-size:13px;}
+.demo-table tr:hover td{background:#161622;}
+.final-card{background:linear-gradient(135deg,#14532d,#166534);border-radius:14px;padding:28px;text-align:center;margin-top:24px;}
+.final-card h3{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;}
+.final-card p{color:#bbf7d0;font-size:14px;margin-bottom:16px;}
+.url-box{background:rgba(0,0,0,.3);border-radius:8px;padding:12px 20px;font-family:monospace;font-size:15px;color:#86efac;display:inline-block;}
+h3.section{font-size:14px;font-weight:700;color:#9ca3af;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>Deploy <span>TalentBridge</span> to Render</h1>
+  <p>Complete step-by-step guide — your site will be live in ~10 minutes</p>
+</div>
+<div class="container">
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-num">STEP 1</div>
+    <h2>Create a GitHub Account <span class="badge badge-free">FREE</span></h2>
+    <p>GitHub stores your code and connects to Render for automatic deployment.</p>
+    <div class="action-row highlight">
+      <div class="action-icon">🌐</div>
+      <div class="action-text">
+        <strong>Go to github.com → Click "Sign up"</strong>
+        <span>Enter email, password, username → Verify your email</span>
+      </div>
+    </div>
+    <a href="https://github.com/signup" class="link-btn" target="_blank">→ Open github.com/signup</a>
+    <div class="tip">✓ Already have a GitHub account? Skip to Step 2.</div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-num">STEP 2</div>
+    <h2>Create a New Repository</h2>
+    <p>A repository is where your project code lives on GitHub.</p>
+    <div class="step-actions">
+      <div class="action-row">
+        <div class="action-icon">1️⃣</div>
+        <div class="action-text"><strong>Click the "+" icon (top right) → "New repository"</strong><span>Or go to: github.com/new</span></div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">2️⃣</div>
+        <div class="action-text"><strong>Repository name: <code style="background:#0a0a12;padding:2px 6px;border-radius:4px;color:#86efac;">talentbridge</code></strong><span>Keep it lowercase, no spaces</span></div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">3️⃣</div>
+        <div class="action-text"><strong>Set to "Public" → Click "Create repository"</strong><span>Public repos are free on GitHub</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-num">STEP 3</div>
+    <h2>Upload Your Project Files</h2>
+    <p>Upload all files from the downloaded ZIP to your GitHub repository.</p>
+    <div class="step-actions">
+      <div class="action-row">
+        <div class="action-icon">📦</div>
+        <div class="action-text"><strong>Extract (unzip) the downloaded file</strong><span>You'll get a folder called "talentbridge" with app.py, templates/, etc.</span></div>
+      </div>
+      <div class="action-row highlight">
+        <div class="action-icon">📤</div>
+        <div class="action-text">
+          <strong>On GitHub: click "uploading an existing file"</strong>
+          <span>You'll see this link on the empty repository page</span>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">🗂️</div>
+        <div class="action-text"><strong>Drag ALL files into the upload area</strong>
+          <span>Select everything inside the talentbridge folder:<br/>
+          app.py · requirements.txt · Procfile · render.yaml · README.md · .gitignore<br/>
+          templates/ folder · static/ folder · .github/ folder</span>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">✅</div>
+        <div class="action-text"><strong>Click "Commit changes" (green button at bottom)</strong><span>Leave the commit message as default, click the green button</span></div>
+      </div>
+    </div>
+    <div class="warning">⚠️ Make sure you upload files from INSIDE the talentbridge folder — not the folder itself. GitHub should show app.py at the root level.</div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-num">STEP 4</div>
+    <h2>Create a Render Account <span class="badge badge-free">FREE</span></h2>
+    <p>Render hosts your Flask app online for free.</p>
+    <div class="action-row highlight">
+      <div class="action-icon">🌐</div>
+      <div class="action-text">
+        <strong>Go to render.com → Click "Get Started for Free"</strong>
+        <span>Sign up with your GitHub account (easiest — one click!)</span>
+      </div>
+    </div>
+    <a href="https://render.com" class="link-btn green" target="_blank">→ Open render.com</a>
+    <div class="tip">✓ Sign up with GitHub so Render can access your repositories automatically.</div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-num">STEP 5</div>
+    <h2>Deploy on Render <span class="badge badge-auto">AUTO-DEPLOY</span></h2>
+    <p>Connect your GitHub repo to Render and deploy with one click.</p>
+    <div class="step-actions">
+      <div class="action-row">
+        <div class="action-icon">1️⃣</div>
+        <div class="action-text"><strong>Click "New +" → "Web Service"</strong><span>From the Render dashboard</span></div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">2️⃣</div>
+        <div class="action-text"><strong>Select "Build and deploy from a Git repository"</strong><span>Then click "Next"</span></div>
+      </div>
+      <div class="action-row highlight">
+        <div class="action-icon">3️⃣</div>
+        <div class="action-text"><strong>Find your "talentbridge" repo → Click "Connect"</strong><span>If you don't see it, click "Configure account" to give Render access</span></div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">4️⃣</div>
+        <div class="action-text"><strong>Fill in these exact settings:</strong></div>
+      </div>
+    </div>
+
+    <div style="background:#0a0a12;border-radius:10px;padding:16px;margin:10px 0;">
+      <h3 class="section">Render Settings</h3>
+      <table class="demo-table">
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>Name</td><td style="color:#86efac;font-family:monospace;">talentbridge</td></tr>
+        <tr><td>Region</td><td>Singapore (closest to India)</td></tr>
+        <tr><td>Branch</td><td style="color:#86efac;font-family:monospace;">main</td></tr>
+        <tr><td>Runtime</td><td>Python 3</td></tr>
+        <tr><td>Build Command</td><td><code style="color:#86efac;">pip install -r requirements.txt</code></td></tr>
+        <tr><td>Start Command</td><td><code style="color:#86efac;">gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120</code></td></tr>
+        <tr><td>Plan</td><td style="color:#86efac;">Free</td></tr>
+      </table>
+    </div>
+
+    <div class="action-row" style="margin-top:10px;">
+      <div class="action-icon">5️⃣</div>
+      <div class="action-text"><strong>Click "Create Web Service" (blue button)</strong><span>Render will now build and deploy your app — takes 3–5 minutes</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step">
+    <div class="step-num">STEP 6</div>
+    <h2>Enable Auto-Deploy (GitHub Actions) <span class="badge badge-auto">OPTIONAL</span></h2>
+    <p>Every time you push code to GitHub, it automatically deploys to Render.</p>
+    <div class="step-actions">
+      <div class="action-row">
+        <div class="action-icon">1️⃣</div>
+        <div class="action-text"><strong>In Render dashboard → your service → Settings → Deploy Hook</strong><span>Copy the "Deploy Hook URL" — it looks like: https://api.render.com/deploy/srv-xxx...</span></div>
+      </div>
+      <div class="action-row highlight">
+        <div class="action-icon">2️⃣</div>
+        <div class="action-text"><strong>In GitHub → your repo → Settings → Secrets → Actions</strong><span>Click "New repository secret"</span></div>
+      </div>
+      <div class="action-row">
+        <div class="action-icon">3️⃣</div>
+        <div class="action-text">
+          <strong>Add this secret:</strong>
+          <span>Name: <code style="background:#0a0a12;padding:2px 6px;border-radius:4px;color:#fde68a;">RENDER_DEPLOY_HOOK_URL</code></span><br/>
+          <span>Value: (paste the URL you copied from Render)</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip">✓ Now every git push → GitHub runs tests → if tests pass → auto-deploys to Render!</div>
+  </div>
+
+  <!-- STEP 7 — Your site is live -->
+  <div class="step">
+    <div class="step-num">STEP 7</div>
+    <h2>Watch It Deploy</h2>
+    <p>Monitor the build logs in Render. It takes about 3–5 minutes.</p>
+    <div class="step-actions">
+      <div class="action-row">
+        <div class="action-icon">📋</div>
+        <div class="action-text"><strong>In Render — click your service → "Logs" tab</strong><span>You'll see lines like: "Installing packages", "Starting gunicorn"</span></div>
+      </div>
+      <div class="action-row highlight">
+        <div class="action-icon">✅</div>
+        <div class="action-text"><strong>When you see "Your service is live" — you're done!</strong><span>Render gives you a URL like: https://talentbridge.onrender.com</span></div>
+      </div>
+    </div>
+    <div class="code">Booting worker with pid: 123
+[INFO] Starting gunicorn 21.2.0
+[INFO] Listening at: http://0.0.0.0:10000
+✓ Your service is live 🎉</div>
+  </div>
+
+  <!-- Demo credentials -->
+  <div class="step">
+    <div class="step-num">DEMO</div>
+    <h2>Test Your Live Website</h2>
+    <p>Use these demo accounts to test all features after deployment.</p>
+    <table class="demo-table">
+      <tr><th>Role</th><th>Email</th><th>Password</th><th>Access</th></tr>
+      <tr><td>👤 Candidate</td><td style="color:#86efac;">arjun@demo.com</td><td style="color:#86efac;">demo123</td><td>Dashboard, Apply, Upload Resume</td></tr>
+      <tr><td>👤 Candidate</td><td style="color:#86efac;">priya@demo.com</td><td style="color:#86efac;">demo123</td><td>Dashboard, Apply, Upload Resume</td></tr>
+      <tr><td>🏢 Company</td><td style="color:#86efac;">google@demo.com</td><td style="color:#86efac;">demo123</td><td>Dashboard, Pipeline, AI Ranking</td></tr>
+      <tr><td>🏢 Company</td><td style="color:#86efac;">zomato@demo.com</td><td style="color:#86efac;">demo123</td><td>Dashboard, Pipeline, AI Ranking</td></tr>
+      <tr><td>🏢 Company</td><td style="color:#86efac;">infosys@demo.com</td><td style="color:#86efac;">demo123</td><td>Dashboard, Pipeline, AI Ranking</td></tr>
+    </table>
+    <div class="info">ℹ️ Free Render plan resets the database when the server restarts (every ~15 min of inactivity). Demo data reloads automatically. For permanent storage, upgrade to Render's paid plan or add a PostgreSQL database.</div>
+  </div>
+
+  <!-- Final -->
+  <div class="final-card">
+    <h3>🎉 Your website is live!</h3>
+    <p>Share this link with anyone — it works on desktop and mobile</p>
+    <div class="url-box">https://talentbridge.onrender.com</div>
+    <p style="margin-top:12px;font-size:12px;color:#6b7280;">(Your actual URL will be shown in the Render dashboard)</p>
+  </div>
+
+  <div style="text-align:center;margin-top:24px;font-size:12px;color:#374151;">
+    TalentBridge · Built with Flask + SQLite · Deployed on Render
+  </div>
+</div>
+</body>
+</html>
